@@ -1,267 +1,646 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Happy Birthday</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, sans-serif;
+    font-family:'Outfit',sans-serif;
 }
 
 body{
+
     height:100vh;
+
     overflow:hidden;
-    background:linear-gradient(135deg,#0f172a,#1e293b,#111827);
+
+    background:
+    radial-gradient(circle at top left,#ff4d6d55,transparent 30%),
+    radial-gradient(circle at bottom right,#7b61ff55,transparent 30%),
+    #070b1a;
+
     display:flex;
     justify-content:center;
     align-items:center;
+
     position:relative;
 }
 
-/* Floating Balls */
+/* BACKGROUND LIGHTS */
 
-.balloon{
+.light{
+
     position:absolute;
-    bottom:-150px;
-    width:70px;
-    height:90px;
+
     border-radius:50%;
-    animation:float 12s infinite linear;
-    opacity:.9;
+
+    filter:blur(120px);
+
+    opacity:.5;
+
+    animation:move 8s infinite alternate;
 }
 
-.balloon::after{
-    content:'';
-    position:absolute;
-    width:2px;
-    height:90px;
-    background:white;
-    left:50%;
-    top:90px;
-}
-
-.ball1{
-    left:10%;
+.l1{
+    width:450px;
+    height:450px;
     background:#ff4d6d;
-    animation-duration:10s;
+    top:-150px;
+    left:-100px;
 }
 
-.ball2{
-    left:30%;
-    background:#ffd166;
-    animation-duration:13s;
+.l2{
+    width:400px;
+    height:400px;
+    background:#7b61ff;
+    bottom:-120px;
+    right:-100px;
 }
 
-.ball3{
-    left:50%;
-    background:#06d6a0;
-    animation-duration:11s;
+.l3{
+    width:300px;
+    height:300px;
+    background:#00d4ff;
+    top:40%;
+    left:40%;
 }
 
-.ball4{
-    left:70%;
-    background:#4cc9f0;
-    animation-duration:14s;
+@keyframes move{
+
+    0%{
+        transform:translate(0,0);
+    }
+
+    100%{
+        transform:translate(60px,-40px);
+    }
 }
 
-.ball5{
-    left:85%;
-    background:#c77dff;
-    animation-duration:12s;
+/* FLOATING SHAPES */
+
+.shape{
+
+    position:absolute;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(12px);
+
+    background:rgba(255,255,255,0.04);
+
+    animation:float 5s infinite ease-in-out;
+}
+
+.s1{
+
+    width:160px;
+    height:160px;
+
+    border-radius:40% 60% 65% 35%;
+
+    top:8%;
+    left:8%;
+}
+
+.s2{
+
+    width:120px;
+    height:120px;
+
+    border-radius:60% 40% 30% 70%;
+
+    bottom:10%;
+    left:12%;
+
+    animation-delay:1s;
+}
+
+.s3{
+
+    width:180px;
+    height:180px;
+
+    border-radius:55% 45% 70% 30%;
+
+    top:10%;
+    right:8%;
+
+    animation-delay:2s;
+}
+
+.s4{
+
+    width:130px;
+    height:130px;
+
+    border-radius:30% 70% 40% 60%;
+
+    bottom:10%;
+    right:10%;
+
+    animation-delay:1.5s;
 }
 
 @keyframes float{
-    0%{
-        transform:translateY(0) rotate(0deg);
+
+    0%,100%{
+        transform:translateY(0);
     }
-    100%{
-        transform:translateY(-120vh) rotate(360deg);
+
+    50%{
+        transform:translateY(-20px);
     }
 }
 
-/* Main Card */
+/* MAIN CONTAINER */
 
-.card{
-    width:90%;
-    max-width:700px;
-    padding:50px 30px;
-    text-align:center;
-    border-radius:30px;
-    background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,0.2);
-    box-shadow:0 0 30px rgba(255,255,255,0.1);
+.main{
+
+    width:92%;
+    max-width:1250px;
+
+    height:720px;
+
+    position:relative;
+
     z-index:10;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:50px;
+
+    border-radius:45px;
+
+    background:
+    rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+    0 20px 80px rgba(0,0,0,0.45);
 }
+
+/* LEFT CONTENT */
+
+.left{
+
+    width:48%;
+}
+
+/* SMALL TAG */
+
+.tag{
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    color:#ffb3c1;
+
+    font-size:14px;
+
+    letter-spacing:4px;
+
+    margin-bottom:28px;
+}
+
+/* TITLE */
 
 h1{
-    font-size:70px;
+
+    font-size:95px;
+
+    line-height:.95;
+
     color:white;
-    margin-bottom:20px;
-    animation:glow 2s infinite alternate;
+
+    font-weight:900;
+
+    margin-bottom:25px;
 }
 
-@keyframes glow{
-    from{
-        text-shadow:0 0 10px #ff4d6d;
-    }
-    to{
-        text-shadow:
-        0 0 20px #ff4d6d,
-        0 0 40px #ff4d6d,
-        0 0 60px #ff4d6d;
-    }
-}
-
-.name{
-    font-size:45px;
-    color:#ffd166;
-    margin-bottom:20px;
-}
+/* MESSAGE */
 
 .message{
-    color:#e5e7eb;
+
+    color:#d6d6d6;
+
     font-size:20px;
-    line-height:1.7;
-    margin-bottom:35px;
+
+    line-height:1.9;
+
+    margin-bottom:45px;
+
+    max-width:520px;
 }
 
+/* BUTTON */
+
 button{
-    padding:15px 35px;
+
+    width:260px;
+    height:70px;
+
     border:none;
-    border-radius:50px;
-    font-size:18px;
-    cursor:pointer;
-    background:#ff4d6d;
+
+    border-radius:80px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4d6d,
+        #7b61ff,
+        #00d4ff
+    );
+
+    background-size:300% 300%;
+
+    animation:gradient 5s infinite;
+
     color:white;
-    transition:.3s;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.4s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 20px 50px rgba(123,97,255,0.35);
+}
+
+@keyframes gradient{
+
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+
+button::before{
+
+    content:'';
+
+    position:absolute;
+
+    width:120px;
+    height:200%;
+
+    background:rgba(255,255,255,0.3);
+
+    top:-50%;
+    left:-140px;
+
+    transform:rotate(25deg);
+
+    transition:.7s;
+}
+
+button:hover::before{
+
+    left:140%;
 }
 
 button:hover{
-    transform:scale(1.08);
-    background:#ff758f;
+
+    transform:
+    translateY(-6px)
+    scale(1.04);
 }
 
-/* Confetti */
+/* RIGHT SIDE CUSTOM IMAGE DESIGN */
 
-.confetti{
+.right{
+
+    width:45%;
+
+    height:100%;
+
+    position:relative;
+}
+
+/* MAIN IMAGE */
+
+.main-image{
+
     position:absolute;
-    width:10px;
-    height:10px;
-    top:-20px;
-    animation:fall linear forwards;
+
+    width:340px;
+    height:460px;
+
+    top:50%;
+    left:50%;
+
+    transform:
+    translate(-50%,-50%)
+    rotate(-6deg);
+
+    overflow:hidden;
+
+    border-radius:
+    60px 20px 80px 20px;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,0.4);
+
+    z-index:5;
 }
 
-@keyframes fall{
-    to{
-        transform:translateY(110vh) rotate(720deg);
+.main-image img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+/* SMALL FLOATING IMAGES */
+
+.small-img{
+
+    position:absolute;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,0.35);
+}
+
+.small-img img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+}
+
+/* DIFFERENT SHAPES */
+
+.i1{
+
+    width:180px;
+    height:220px;
+
+    top:30px;
+    right:10px;
+
+    border-radius:
+    50% 20% 50% 20%;
+
+    transform:rotate(10deg);
+}
+
+.i2{
+
+    width:160px;
+    height:200px;
+
+    bottom:40px;
+    left:10px;
+
+    border-radius:
+    20% 50% 20% 50%;
+
+    transform:rotate(-12deg);
+}
+
+.i3{
+
+    width:130px;
+    height:130px;
+
+    top:260px;
+    right:40px;
+
+    border-radius:50%;
+}
+
+/* BIG BACK TEXT */
+
+.back{
+
+    position:absolute;
+
+    bottom:-20px;
+    right:0;
+
+    font-size:150px;
+
+    font-weight:900;
+
+    color:rgba(255,255,255,0.03);
+
+    pointer-events:none;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+    body{
+        overflow:auto;
     }
-}
 
-/* Mobile */
+    .main{
 
-@media(max-width:600px){
+        flex-direction:column;
+
+        height:auto;
+
+        padding:25px;
+
+        margin:20px 0;
+    }
+
+    .left{
+
+        width:100%;
+
+        order:2;
+
+        margin-top:30px;
+    }
+
+    .right{
+
+        width:100%;
+
+        height:500px;
+
+        order:1;
+    }
 
     h1{
-        font-size:45px;
-    }
 
-    .name{
-        font-size:30px;
+        font-size:58px;
     }
 
     .message{
-        font-size:17px;
+
+        font-size:16px;
+
+        line-height:1.7;
     }
+
+    button{
+
+        width:100%;
+    }
+
+    .main-image{
+
+        width:240px;
+        height:320px;
+    }
+
+    .i1{
+
+        width:120px;
+        height:150px;
+
+        top:20px;
+    }
+
+    .i2{
+
+        width:110px;
+        height:140px;
+    }
+
+    .i3{
+
+        width:90px;
+        height:90px;
+    }
+
+    .back{
+
+        font-size:70px;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="balloon ball1"></div>
-<div class="balloon ball2"></div>
-<div class="balloon ball3"></div>
-<div class="balloon ball4"></div>
-<div class="balloon ball5"></div>
+<!-- LIGHTS -->
 
-<div class="card">
+<div class="light l1"></div>
+<div class="light l2"></div>
+<div class="light l3"></div>
 
-    <h1>🎉 Happy Birthday 🎂</h1>
+<!-- SHAPES -->
 
-    <div class="name">Dear Friend</div>
+<div class="shape s1"></div>
+<div class="shape s2"></div>
+<div class="shape s3"></div>
+<div class="shape s4"></div>
 
-    <div class="message">
-        Wishing you happiness, success, love, and lots of beautiful moments in your life.
-        May your special day be full of joy and smiles!
+<!-- MAIN -->
+
+<div class="main">
+
+    <!-- LEFT -->
+
+    <div class="left">
+
+        <div class="tag">
+            SPECIAL MOMENT ✨
+        </div>
+
+        <h1>
+            Happy <br>
+            Birthday
+        </h1>
+
+        <div class="message">
+
+            A beautiful day filled with love,
+            magical memories,
+            happiness and unforgettable moments.
+            Keep smiling forever 💖
+
+        </div>
+
+        <button onclick="openPage()">
+            Open Memories
+        </button>
+
     </div>
 
-   <button onclick="openPage()">
-    Open Memories ❤️
-</button>
+    <!-- RIGHT -->
+
+    <div class="right">
+
+        <!-- MAIN -->
+
+        <div class="main-image">
+            <img src="https://picsum.photos/id/1005/900/1200">
+        </div>
+
+        <!-- SMALL -->
+
+        <div class="small-img i1">
+            <img src="https://picsum.photos/id/1011/600/700">
+        </div>
+
+        <div class="small-img i2">
+            <img src="https://picsum.photos/id/1025/600/700">
+        </div>
+
+        <div class="small-img i3">
+            <img src="https://picsum.photos/id/1018/500/500">
+        </div>
+
+        <div class="back">
+            PARTY
+        </div>
+
+    </div>
 
 </div>
 
 <script>
 
-function showWish(){
-
-    alert("✨ Have an Amazing Birthday! ✨");
-
-    createConfetti();
-}
-
-function createConfetti(){
-
-    for(let i=0;i<150;i++){
-
-        let confetti=document.createElement("div");
-
-        confetti.classList.add("confetti");
-
-        document.body.appendChild(confetti);
-
-        let colors=[
-            "#ff4d6d",
-            "#ffd166",
-            "#06d6a0",
-            "#4cc9f0",
-            "#c77dff",
-            "#ffffff"
-        ];
-
-        confetti.style.background=
-            colors[Math.floor(Math.random()*colors.length)];
-
-        confetti.style.left=Math.random()*100+"vw";
-
-        confetti.style.width=
-            Math.random()*10+5+"px";
-
-        confetti.style.height=
-            Math.random()*10+5+"px";
-
-        confetti.style.animationDuration=
-            Math.random()*3+2+"s";
-
-        setTimeout(()=>{
-            confetti.remove();
-        },5000);
-    }
-}
-
 function openPage(){
 
-    window.location.href = "memories.html";
-
+    window.location.href=
+    "memories.html";
 }
-
 
 </script>
 
